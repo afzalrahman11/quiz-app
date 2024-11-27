@@ -1,5 +1,7 @@
-<div class = "border border-1 rounded border-black p-4 m-4">
-  <p># <%= quiz_counter + 1 %>.</p>
-  <p class = "font-bold" ><%= quiz.title %><p>
-  <p><%= quiz.description %><p>
-</div>
+<%= link_to quiz_path(quiz) do %>
+  <div class = "border border-1 rounded border-black p-4 m-4">
+    <p>Questions: <%= quiz.questions.count %></p>
+    <p class = "font-bold" ><%= quiz.title %><p>
+    <p><%= quiz.description %><p>
+  </div>
+<% end %>
