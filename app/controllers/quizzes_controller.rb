@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.includes(:questions).find(params[:id])
   end
 end
