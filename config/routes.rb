@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
-  resources :quizzes
+  resources :quizzes do
+    post "submit"
+  end
 end
