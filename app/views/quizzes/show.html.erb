@@ -1,33 +1,36 @@
 <div class = "max-w-6xl mx-auto py-8">
   <h1 class = "text-5xl font-bold "><%= @quiz.title %></h1>
   <h2 class = "mt-4 text-lg font-medium text-gray-600 "><%= @quiz.description %></h2>
-  <div class = "flex flex-col gap-10 mt-10 border p-12 border-2 border-black rounded">
-    <% @quiz.questions.each_with_index do |question, index| %>
-      <div class = "flex flex-col gap-4 ">
-        <p class = "font-medium text-lg" ><%= index + 1 %>. <%= question.title %></p>
-        <div class = "flex flex-col gap-4" >
-          <% if question.optionA.present? %>
-          <label class = "flex items-center gap-2">
-            <%= radio_button_tag "quiz#{question.id}", 'A' %> <%= question.optionA %>
-            </label>
-          <% end %>
-          <% if question.optionB.present? %>
-          <label class = "flex items-center gap-2">
-            <%= radio_button_tag "quiz#{question.id}", 'B' %> <%= question.optionB %>
-            </label>
-          <% end %>
-          <% if question.optionC.present? %>
-          <label class = "flex items-center gap-2">
-            <%= radio_button_tag "quiz#{question.id}", 'C' %> <%= question.optionC %>
-            </label>
-          <% end %>
-          <% if question.optionD.present? %>
-          <label class = "flex items-center gap-2">
-            <%= radio_button_tag "quiz#{question.id}", 'D' %> <%= question.optionD %>
-            </label>
-          <% end %>
+  <%= form_with url: quiz_submit_path(@quiz), method: :post do |form| %>
+    <div class = "flex flex-col gap-10 mt-10 border p-12 border-black rounded">
+      <% @quiz.questions.each_with_index do |question, index| %>
+        <div class = "flex flex-col gap-4 ">
+          <p class = "font-medium text-lg" ><%= index + 1 %>. <%= question.title %></p>
+          <div class = "flex flex-col gap-4" >
+            <% if question.optionA.present? %>
+            <label class = "flex items-center gap-2">
+              <%= radio_button_tag "answers[#{question.id}]", '0' %> <%= question.optionA %>
+              </label>
+            <% end %>
+            <% if question.optionB.present? %>
+            <label class = "flex items-center gap-2">
+              <%= radio_button_tag "answers[#{question.id}]", '1' %> <%= question.optionB %>
+              </label>
+            <% end %>
+            <% if question.optionC.present? %>
+            <label class = "flex items-center gap-2">
+              <%= radio_button_tag "answers[#{question.id}]", '2' %> <%= question.optionC %>
+              </label>
+            <% end %>
+            <% if question.optionD.present? %>
+            <label class = "flex items-center gap-2">
+              <%= radio_button_tag "answers[#{question.id}]", '3' %> <%= question.optionD %>
+              </label>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+      <%= submit_tag 'Submit', class: 'bg-indigo-500 rounded w-min px-4 py-3 text-white font-medium hover:bg-indigo-700 hover:cursor-pointer' %>
+    </div>
+  <% end %>
 </div>
