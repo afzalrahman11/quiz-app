@@ -50,5 +50,5 @@ group :development do
   gem "web-console"
 end
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 3.1"
 gem "faker"
